@@ -32,17 +32,27 @@
     .grid{display:grid; gap:1.2rem}
     .card{background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--card); border:1px solid rgba(124,156,255,.18); padding:1.1rem; border-radius:18px; box-shadow:0 20px 50px rgba(0,0,0,.25)}
     .muted{color:var(--muted)}
-    .section{padding:80px 0}
+    html, body{max-width:100%; overflow-x:hidden;}
+    .section{padding: clamp(48px, 8vw, 80px) 0;}
     .headline{font-size: clamp(1.6rem, 3.5vw, 2.4rem); letter-spacing:.2px; margin:0 0 .35rem}
     .sub{font-size: clamp(1.05rem, 2.5vw, 1.2rem); margin:0}
     /* Navbar */
     .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
       background: color-mix(in oklab, var(--bg) 70%, #000 0%/.6); border-bottom:1px solid rgba(124,156,255,.15)}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:.5rem;
+    min-height:64px;   /* start-høgde */
+    height:auto;       /* ikkje lås høgda */
+    padding-block:.5rem;
+    }
     .logo{display:flex; align-items:center; gap:.6rem; font-weight:700}
     .logo-dot{width:.75rem; height:.75rem; border-radius:999px; background:var(--ok); box-shadow:0 0 20px var(--ok)}
     .nav a{opacity:.9}
-    .nav ul{display:flex; list-style:none; padding:0; margin:0; gap:1rem}
+    .nav ul{flex-wrap:wrap; gap:.75rem; margin:.25rem 0 0;}
 
     /* Hero */
     .hero{display:grid; grid-template-columns: 1.1fr .9fr; align-items:center; gap:2rem; padding:clamp(40px, 7vw, 80px) 0}
@@ -51,13 +61,12 @@
     .cta{margin-top:1.2rem; display:flex; gap:.8rem; flex-wrap:wrap}
 
     /* Prosjekt */
-    .projects .grid{grid-template-columns: repeat(12, 1fr)}
-    .project-card{grid-column: span 6; display:grid; grid-template-rows: auto 1fr auto; gap:.8rem}
+    .projects .grid{grid-template-columns:repeat(12,1fr);}
+    .project-card{grid-column:span 12;}
     .project-thumb{border-radius:14px; overflow:hidden; border:1px solid rgba(124,156,255,.18)}
     .project-meta{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap}
-    @media (max-width: 850px){
-      .hero{grid-template-columns:1fr}
-      .projects .project-card{grid-column: span 12}
+    @media (min-width:850px){
+    .project-card{grid-column:span 6;}
     }
 
     /* Ferdigheiter */
@@ -112,8 +121,8 @@
     .projects .project-card { grid-column: span 6; } /* two cards per row */
     }
 
-    #about .grid { grid-template-columns: 1fr; }           /* mobil */
-    @media (min-width: 850px){
-    #about .grid { grid-template-columns: 1fr 1fr; }     /* større skjerm */
+    #about .grid{grid-template-columns:1fr;}
+    @media (min-width:850px){
+    #about .grid{grid-template-columns:1fr 1fr;}
     }
 
